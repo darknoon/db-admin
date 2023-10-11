@@ -20,20 +20,24 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <SidebarNav
-          items={[
-            {
-              title: 'Tables',
-              href: '/tables',
-              items: [
-                { title: 'Users', href: '/tables/users' },
-                { title: 'Posts', href: '/tables/posts' },
-              ],
-            },
-            { title: 'Functions', href: '/functions' },
-          ]}
-        ></SidebarNav>
-        {children}
+        <div className="flex flex-row">
+          <div className="w-30 flex-grow-0 bg-neutral-200 m-3 rounded-lg p-2">
+            <SidebarNav
+              items={[
+                {
+                  title: 'Tables',
+                  href: '/tables',
+                  items: tables.map((table) => ({
+                    title: table,
+                    href: `/tables/${table}`,
+                  })),
+                },
+                { title: 'Functions', href: '/functions' },
+              ]}
+            />
+          </div>
+          <div className="bg-slate-80 w-full m-3">{children}</div>
+        </div>
       </body>
     </html>
   )
