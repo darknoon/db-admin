@@ -9,25 +9,19 @@ import {
 } from '@/components/ui/table'
 
 import { Column, getRows, getTableStructure } from '@/lib/db'
+import Link from 'next/link'
 
 export default async function TablePage({
   params: { table },
 }: {
   params: { table: string }
 }) {
-  const columns = await getTableStructure(table)
+  // const columns = await getTableStructure(table)
   return (
     <div>
-      <h1 className="mt-8 scroll-m-20 text-2xl font-semibold tracking-tight">
-        {table}
-      </h1>
-      <h3 className="mt-8 scroll-m-20 text-xl font-semibold tracking-tight">
-        schema
-      </h3>
-      <Structure columns={columns} />
-      <h3 className="mt-8 scroll-m-20 text-xl font-semibold tracking-tight">
-        data
-      </h3>
+      <h1 className="hidden">{table}</h1>
+      {/* <Structure columns={columns} /> */}
+      <Link href={'structure'}>Edit structure</Link>
       <Data table={table} />
     </div>
   )
