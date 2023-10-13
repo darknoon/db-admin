@@ -36,9 +36,7 @@ export function SidebarNav({ items }: SidebarNavProps) {
     <div className="w-full">
       {items.map((item, index) => (
         <div key={index} className={cn('pb-8')}>
-          <h4 className="mb-1 rounded-md px-2 py-1 text-sm font-medium">
-            {item.title}
-          </h4>
+          <h4 className="mb-1 rounded-md px-2 py-1 text-sm">{item.title}</h4>
           {item.items ? (
             <SidebarNavItems items={item.items} pathname={pathname} />
           ) : null}
@@ -62,9 +60,9 @@ export function SidebarNavItems({ items, pathname }: SidebarNavItemsProps) {
             key={index}
             href={item.href}
             className={cn(
-              'flex w-full items-center rounded-md p-2 hover:underline',
+              'flex w-full items-center rounded-md p-2 hover:bg-muted overflow-ellipsis',
               {
-                'bg-muted': pathname === item.href,
+                'font-bold': pathname === item.href,
               },
             )}
             target={item.external ? '_blank' : ''}

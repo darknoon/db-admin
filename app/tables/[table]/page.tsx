@@ -18,12 +18,15 @@ export default async function TablePage({
   const columns = await getTableStructure(table)
   return (
     <div>
-      <h3 className="mt-8 scroll-m-20 text-2xl font-semibold tracking-tight">
-        {table} schema
+      <h1 className="mt-8 scroll-m-20 text-2xl font-semibold tracking-tight">
+        {table}
+      </h1>
+      <h3 className="mt-8 scroll-m-20 text-xl font-semibold tracking-tight">
+        schema
       </h3>
       <Structure columns={columns} />
-      <h3 className="mt-8 scroll-m-20 text-2xl font-semibold tracking-tight">
-        {table} data
+      <h3 className="mt-8 scroll-m-20 text-xl font-semibold tracking-tight">
+        data
       </h3>
       <Data table={table} />
     </div>
@@ -67,9 +70,11 @@ async function DataRows({ columns, rows }: { columns: Column[]; rows: any[] }) {
   return (
     <Table>
       <TableHeader>
-        {columns.map((c) => (
-          <TableHead key={c.ordinal_position}>{c.column_name}</TableHead>
-        ))}
+        <TableRow>
+          {columns.map((c) => (
+            <TableHead key={c.ordinal_position}>{c.column_name}</TableHead>
+          ))}
+        </TableRow>
       </TableHeader>
       <TableBody>
         {rows.map((row, i) => (
